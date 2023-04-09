@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sports Wiz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="static/images/icon.png">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="static/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="static/utils.js"></script>
+  <script src="api.js"></script>
+</head>
+
+
+
+<body class="x3-grey-bg">
+
+  <!-- HEADER -->
+  <a href="index.html">
+    <div class="w3-black w3-padding">
+      <div class="w3-center fit-width">
+        <h1 class="w3-xxlarge bold">Sports Wiz</h1>
+      </div>
+    </div>
+  </a>
+
+
+  <!-- CONTENT -->
+  <div class="x3-container auto" style="max-width: 600px;">
+
+    <h2 class="w3-center">Favorites</h2>
+
+    <!-- cardinals -->
+    <div class="x3-row team-section">
+      <div class="center x3-row">
+        <spans>
+          <img src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/stl.png&h=130&w=130"
+            alt="cardinals logo" height="60" class="x3-b8">
+          </span>
+          <span class="w3-xlarge semibold x3-l8">
+            St Louis Cardinals
+          </span>
+      </div>
+      <div class="center auto" style="max-width: 400px;">
+        <a href="player.html?streamCode=aHR0cDovL2J1ZmZzdHJlYW0uaW8vZW1iL21sYi1zdHJlYW1zL3N0LWxvdWlzLWNhcmRpbmFscy1saXZlLXN0cmVhbQ==">
+          <button class="x3-button fit w3-large">
+            <i class="bi-play-fill x3-r4" style="font-size: 16px;"></i>
+            Buffstream
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- cubs -->
+    <div class="x3-row team-section">
+      <div class="center x3-row">
+        <spans>
+          <img src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/chc.png&h=130&w=130"
+            alt="cubs logo" height="60" class="x3-b8">
+          </span>
+          <span class="w3-xlarge semibold x3-l8">
+            Chicago Cubs
+          </span>
+      </div>
+      <div class="center auto" style="max-width: 400px;">
+        <a href="player.html?streamCode=aHR0cDovL2J1ZmZzdHJlYW0uaW8vZW1iL21sYi1zdHJlYW1zL2NoaWNhZ28tY3Vicy1saXZlLXN0cmVhbQ==">
+          <button class="x3-button fit w3-large">
+            <i class="bi-play-fill x3-r4" style="font-size: 16px;"></i>
+            Buffstream
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- espn -->
+    <div class="x3-row team-section">
+      <div class="center x3-row">
+        <spans>
+          <img src="https://a.espncdn.com/favicon.ico"
+            alt="espn logo" height="60" class="x3-b8">
+          </span>
+          <span class="w3-xlarge semibold x3-l8">
+            ESPN
+          </span>
+      </div>
+      <div class="center auto" style="max-width: 400px;">
+        <a href="player.html?streamCode=aHR0cDovL2J1ZmZzdHJlYW0uaW8vZW1iL2xpdmUtdHYtc3RyZWFtcy9lc3BuLWxpdmUtc3RyZWFt">
+          <button class="x3-button fit w3-large">
+            <i class="bi-play-fill x3-r4" style="font-size: 16px;"></i>
+            Buffstream
+          </button>
+        </a>
+      </div>
+    </div>
+
+    
+    <!-- bears -->
+    <div class="x3-row team-section">
+      <div class="center x3-row">
+        <spans>
+          <img src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/scoreboard/chi.png&h=130&w=130"
+            alt="espn logo" height="60" class="x3-b8">
+          </span>
+          <span class="w3-xlarge semibold x3-l8">
+            Chicago Bears
+          </span>
+      </div>
+      <div class="center auto" style="max-width: 400px;">
+        <a href="player.html?streamCode=aHR0cDovL2J1ZmZzdHJlYW0uaW8vZW1iL25mbC1zdHJlYW1zL2NoaWNhZ28tYmVhcnMtbGl2ZS1zdHJlYW0=">
+          <button class="x3-button fit w3-large">
+            <i class="bi-play-fill x3-r4" style="font-size: 16px;"></i>
+            Buffstream
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- purdue mbb -->
+    <div class="x3-row team-section">
+      <div class="center x3-row">
+        <spans>
+          <img src="https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2509.png&h=200&w=200"
+            alt="espn logo" height="60" class="x3-b8">
+          </span>
+          <span class="w3-xlarge semibold x3-l8">
+            Purdue NCAAM
+          </span>
+      </div>
+      <div class="center auto" style="max-width: 400px;">
+        <a href="player.html?streamCode=aHR0cDovL2J1ZmZzdHJlYW0uaW8vZW1iL25jYWFiLXN0cmVhbXMvcHVyZHVlLWxpdmUtc3RyZWFt">
+          <button class="x3-button fit w3-large">
+            <i class="bi-play-fill x3-r4" style="font-size: 16px;"></i>
+            Buffstream
+          </button>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+
+
+<!-- SCRIPTS -->
+<script>
+
+</script>
+
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>API Sandbox</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="static/images/icon.png">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="static/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="static/utils.js"></script>
+</head>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background-color: #2d2d2d;
+    margin: auto;
+  }
+
+  iframe {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<body>
+
+  <!-- Stream frame -->
+  <div class="center">
+    <iframe id="frame" src="" frameborder="0" allowfullscreen=""></iframe>
+  </div>
+
+</body>
+
+
+
+
+<!-- SCRIPTS -->
+<script>
+
+  // read params
+  const urlParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const streamCode = urlParams.streamCode;
+  if (!streamCode) {
+    window.location.replace('index.html');
+  }
+
+  // set source
+  const source = atob(streamCode);
+  $('#frame').attr('src', source);
+
+  // handle iframe sizing
+  const resizeFrame = () => {
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+
+    if (h < 9.2/16 * w) {
+      w = 16/9.2 * h;
+    } else {
+      h = 9.2/16 * w;
+    }
+
+    $('#frame').css({ width: `${w}px`, height: `${h - 10}px` })
+  };
+  resizeFrame();
+
+  $(window).resize(() => {
+    resizeFrame();
+  })
+
+</script>
+
+
+</html>
