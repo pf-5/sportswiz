@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sports Wiz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="static/images/icon.png">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="static/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="static/utils.js"></script>
+  <script src="api.js"></script>
+</head>
+
+
+
+<body class="x3-grey-bg">
+
+  <!-- HEADER -->
+  <a href="index.html">
+    <div class="w3-black w3-padding">
+      <div class="w3-center fit-width">
+        <h1 class="w3-xxlarge bold">Sports Wiz</h1>
+      </div>
+    </div>
+  </a>
+
+
+  <!-- CONTENT -->
+  <div class="x3-container auto" style="max-width: 800px;">
+
+    <h2 id="title" class="center">Loading Stream</h2>
+
+    <div class="x3-row center">
+      <div id="loader-holder" class="loader"></div>
+    </div>
+
+    <div id="log-msg" class="w3-small center" style="color: #cdcdcd; margin-top: 128px;"></div>
+
+  </div>
+
+</body>
+
+
+
+<!-- SCRIPTS -->
+<script>
+
+  // read params
+  const urlParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const provider = urlParams.provider || '';
+  const sport = urlParams.sport || '';
+  const query = urlParams.query || '';
+
+  getStream(provider, sport, query).then(response => {
+
+    if (response.link) {
+      window.location.replace(response.link);
+    } else if (response.error) {
+      $('#loader-holder').removeClass('loader');
+      $('#title').text('Sorry, the stream could not be found');
+      $('#log-msg').text(response.error);
+      console.error(response.error);
+    }
+
+  }).catch(error => {
+    $('#loader-holder').removeClass('loader');
+    $('#title').text('Error: could not get stream');
+    console.error(error);
+  })
+
+</script>
+
+
+</html>

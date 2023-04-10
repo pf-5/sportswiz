@@ -4,6 +4,9 @@ import reutils
 from utils import response
 
 
+cache_data = {}
+
+
 def lambda_handler(event, context):
 
     # read query
@@ -29,24 +32,31 @@ def lambda_handler(event, context):
 
 def fetch_page(url):
     req = requests.get(url)
-    soup = BeautifulSoup(req.content)
+    soup = BeautifulSoup(req.content, 'lxml')
     return soup
 
 
 def crackstreams_mlb(query):
-    soup = fetch_page('https://crackstreams.biz/mlbstreams/')
-    stream_pages = []
-    for page in soup.select('.ctpage'):
-        teams_text = page.select_one('.media-heading').text
-        teams = reutils.clean_spacing(reutils.alphanumeric(teams_text)).lower()
-        anchor = page.select_one('a')
-        link = anchor.attrs['href']
-        stream_pages.append({
-            'teams': teams,
-            'link': link,
-        })
 
+    def fetch():
+        soup = fetch_page('https://crackstreams.biz/mlbstreams/')
+        stream_pages = []
+        for page in soup.select('.ctpage'):
+            teams_text = page.select_one('.media-heading').text
+            teams = reutils.clean_spacing(
+                reutils.alphanumeric(teams_text)).lower()
+            anchor = page.select_one('a')
+            link = anchor.attrs['href']
+            stream_pages.append({
+                'teams': teams,
+                'link': link,
+            })
+        cache_data['crackstreams_mlb'] = stream_pages
+        return stream_pages
+
+    stream_pages = cache_data.get('crackstreams_mlb') or fetch()
     query = query.strip().lower()
+    query_words = query.split(' ')
     for page in stream_pages:
-        if query in teams_text['teams']:
-            return teams_text['link']
+        if any([q in page['teams'] for q in query_words]):
+            return page['link']

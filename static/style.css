@@ -30,7 +30,14 @@ th {
   border: 1px solid black;
   border-radius: 8px;
   margin-bottom: 32px;
-  padding-bottom: 16px !important;
+  padding-bottom: 8px !important;
+}
+
+.stream-select {
+  margin: auto;
+  text-align: center;
+  padding-bottom: 8px;
+  max-width: 400px;
 }
 
 
