@@ -33,6 +33,18 @@ def make_zip_file_bytes(path):
     return buf.getvalue()
 
 
+def print_status(status):
+    meta = status.get('ResponseMetadata') or {}
+    if meta.get('HTTPStatusCode') != 200:
+        print(json.dumps(status, indent=2))
+    else:
+        print('%s (%s)' % (status.get('FunctionName'), status.get('FunctionArn')))
+        print('runtime: %s' % status.get('Runtime'))
+        print('timeout: %ss' % status.get('Timeout'))
+        print('memsize: %s' % status.get('MemorySize'))
+        print('layers:  %d' % len(status.get('Layers') or []))
+
+
 def update_lambda(lambda_name, lambda_code_path):
     if not os.path.isdir(lambda_code_path):
         raise ValueError('Lambda directory does not exist: %s' %
@@ -42,7 +54,7 @@ def update_lambda(lambda_name, lambda_code_path):
         FunctionName=lambda_name,
         ZipFile=make_zip_file_bytes(path=lambda_code_path)
     )
-    print(json.dumps(status, indent=2))
+    print_status(status)
 
 
 # iterate and call update for all lambdas in lambdas/ directory
