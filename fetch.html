@@ -54,11 +54,17 @@
   const provider = urlParams.provider || '';
   const sport = urlParams.sport || '';
   const query = urlParams.query || '';
+  const frame = Boolean(urlParams.frame);
 
   getStream(provider, sport, query).then(response => {
 
     if (response.link) {
-      window.location.replace(response.link);
+      if (frame) {
+        const redir = `http://sportswiz.s3-website.us-east-2.amazonaws.com/player.html?streamCode=${btoa(response.link)}`
+        window.location.replace(redir);
+      } else {
+        window.location.replace(response.link);
+      }
     } else if (response.error) {
       $('#loader-holder').removeClass('loader');
       $('#title').text('Sorry, the stream could not be found');
